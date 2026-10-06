@@ -12,7 +12,7 @@
 
 **Blue Hermes** is a ready-to-deploy template for [Hermes Agent](https://github.com/NousResearch/hermes-agent) by [Nous Research](https://nousresearch.com/), with a web-based admin dashboard for configuration, gateway management, and user pairing.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/hermes-agent-ai?referralCode=QXdhdr&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new)
 
 Hermes Agent is an autonomous AI agent that lives on your server, connects to your messaging channels (Telegram, Discord, Slack, etc.), and gets more capable the longer it runs.
 
@@ -92,10 +92,11 @@ Hermes Agent interacts entirely through messaging channels — there is no chat 
 
 ### 3. Deploy to Railway
 
-1. Click the **Deploy on Railway** button at the top of this README
-2. Set the `ADMIN_PASSWORD` environment variable (or a random one will be generated and printed to deploy logs)
-3. Attach a **volume** mounted at `/data` (persists config across redeploys)
-4. Open your app URL — log in with username `admin` and your password
+1. Click the **Deploy on Railway** button at the top of this README — it opens Railway's dashboard
+2. Select **Deploy from GitHub repo**, choose `youjjbbnn/blue-hermes`, then click **Deploy Now**
+3. Set the `ADMIN_PASSWORD` environment variable (or a random one will be generated and printed to deploy logs)
+4. Attach a **volume** mounted at `/data` (persists config across redeploys)
+5. Open your app URL — log in with username `admin` and your password
 
 ### 4. Configure in the admin dashboard
 

@@ -703,40 +703,6 @@
     margin-top: 4px;
   }
 
-  /* ── Template cards ──────────────────────────────── */
-  .template-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
-  }
-  .template-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 18px;
-    transition: border-color 0.15s;
-  }
-  .template-card:hover { border-color: var(--accent); }
-  .template-card-name {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .template-card-desc {
-    font-size: 12px;
-    color: var(--text-dim);
-    line-height: 1.5;
-    margin-bottom: 14px;
-  }
-  .template-card .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-  }
-
   /* ── Header branding ──────────────────────────────── */
   .header-branding {
     display: flex;
@@ -2251,32 +2217,14 @@
       </div>
       <div class="panel-body">
         <p style="font-size:13px;color:var(--text-dim);margin-bottom:18px;">
-          Explore other AI agent templates you can deploy on Railway with one click.
+          Looking for more? Railway's template gallery hosts a variety of
+          community projects you can deploy in one click.
         </p>
 
-        <div class="template-grid">
+        <a class="btn primary" href="https://railway.com/templates" target="_blank" rel="noopener">
+          Browse Railway Templates
+        </a>
 
-          <div class="template-card">
-            <div class="template-card-name">OpenClaw</div>
-            <div class="template-card-desc">
-              Self-hosted OpenClaw agent — deploy and manage your own OpenClaw instance on Railway.
-            </div>
-            <a class="btn primary" href="https://railway.com/deploy/self-host-openclaw?referralCode=QXdhdr&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noopener">
-              Deploy on Railway
-            </a>
-          </div>
-
-          <div class="template-card">
-            <div class="template-card-name">Paperclip</div>
-            <div class="template-card-desc">
-              Paperclip AI Company — deploy your own Paperclip AI agent instance on Railway.
-            </div>
-            <a class="btn primary" href="https://railway.com/deploy/paperclip-ai-company?referralCode=QXdhdr&utm_medium=integration&utm_source=template&utm_campaign=generic" target="_blank" rel="noopener">
-              Deploy on Railway
-            </a>
-          </div>
-
-        </div>
       </div>
     </div>
 
