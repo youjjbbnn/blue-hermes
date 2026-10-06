@@ -12,8 +12,6 @@
 
 **Blue Hermes** is a ready-to-deploy template for [Hermes Agent](https://github.com/NousResearch/hermes-agent) by [Nous Research](https://nousresearch.com/), with a web-based admin dashboard for configuration, gateway management, and user pairing.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new)
-
 Hermes Agent is an autonomous AI agent that lives on your server, connects to your messaging channels (Telegram, Discord, Slack, etc.), and gets more capable the longer it runs.
 
 ## ✨ What makes Blue Hermes different
@@ -46,7 +44,7 @@ Point it at vLLM, Ollama, LM Studio, a private proxy, or any host with an OpenAI
 ## 📑 Table of Contents
 
 - [Features](#-features)
-- [Quick Start (Railway)](#-quick-start-railway)
+- [Deploy to Railway (step by step)](#-deploy-to-railway-step-by-step)
 - [Quick Start (Docker)](#-quick-start-docker)
 - [Adding a Custom Provider](#-adding-a-custom-provider)
 - [Using the Admin Dashboard](#-using-the-admin-dashboard)
@@ -73,40 +71,199 @@ Point it at vLLM, Ollama, LM Studio, a private proxy, or any host with an OpenAI
 - **Password-Protected** — one cookie-based login guards both the setup wizard and the Hermes dashboard.
 - **Backup & Restore** — download a full snapshot (config, credentials, chat history, memories, skills) as a zip, and restore it — including into a fresh project. A safety snapshot is taken automatically before every restore.
 
-## 🚀 Quick Start (Railway)
+## 🚀 Deploy to Railway (step by step)
 
-### 1. Get an LLM provider key (free)
+The whole thing takes about 10 minutes. The only thing you need beforehand is a GitHub account.
 
-1. Register for free at [OpenRouter](https://openrouter.ai/)
-2. Create an API key from your [OpenRouter dashboard](https://openrouter.ai/keys)
-3. Pick a free model from the [model list sorted by price](https://openrouter.ai/models?order=pricing-low-to-high) (e.g. `google/gemma-3-1b-it:free`, `meta-llama/llama-3.1-8b-instruct:free`)
+<div dir="rtl">
 
-### 2. Set up a Telegram bot (fastest channel)
+### راهنمای فارسی — دیپلوی روی Railway
 
-Hermes Agent interacts entirely through messaging channels — there is no chat UI like ChatGPT. Telegram is the quickest to set up:
+تمام کار حدود ۱۰ دقیقه طول می‌کشه. فقط یه اکانت گیت‌هاب لازم داری.
 
-1. Open Telegram and message [@BotFather](https://t.me/BotFather)
-2. Send `/newbot`, follow the prompts, and copy the **Bot Token**
-3. Send a message to your new bot — it will appear as a pairing request in the admin dashboard
-4. To find your Telegram user ID, message [@userinfobot](https://t.me/userinfobot)
+</div>
 
-### 3. Deploy to Railway
+---
 
-1. Click the **Deploy on Railway** button at the top of this README — it opens Railway's dashboard
-2. Select **Deploy from GitHub repo**, choose `youjjbbnn/blue-hermes`, then click **Deploy Now**
-3. Set the `ADMIN_PASSWORD` environment variable (or a random one will be generated and printed to deploy logs)
-4. Attach a **volume** mounted at `/data` (persists config across redeploys)
-5. Open your app URL — log in with username `admin` and your password
+### English
 
-### 4. Configure in the admin dashboard
+#### Step 1 — Get an LLM provider key (free)
 
-1. **LLM Provider** — select OpenRouter from the dropdown, paste your API key, enter the model name
-2. **Messaging Channel** — check Telegram, paste the Bot Token from BotFather
-3. Click **Save & Start** — the gateway will start and your bot goes live
+You need a model for your agent to think with. OpenRouter is the easiest way in:
 
-### 5. Start chatting
+1. Register for free at [openrouter.ai](https://openrouter.ai/)
+2. Go to your [API keys page](https://openrouter.ai/workspaces/default/keys) and click **Create Key**
+3. Copy the key — it starts with `sk-or-...`
+4. Pick a model from the [model list](https://openrouter.ai/models) (filter by "Free" for no-cost options, e.g. `google/gemma-3-1b-it:free`)
 
-Message your Telegram bot. If you're a new user, a pairing request will appear in the admin dashboard under **Users** — click **Approve**, and you're in.
+<div dir="rtl">
+
+#### مرحله ۱ — گرفتن کلید LLM (رایگان)
+
+به یه مدل نیاز داری تا عاملت باهاش فکر کنه. OpenRouter ساده‌ترین راهه:
+
+۱. تو [openrouter.ai](https://openrouter.ai/) رایگان ثبت‌نام کن
+۲. به [صفحه کلیدها](https://openrouter.ai/workspaces/default/keys) برو و **Create Key** رو بزن
+۳. کلید رو کپی کن — با `sk-or-...` شروع می‌شه
+۴. یه مدل از [لیست مدل‌ها](https://openrouter.ai/models) انتخاب کن (با فیلتر "Free" می‌تونی مدل‌های رایگان رو ببینی، مثلاً `google/gemma-3-1b-it:free`)
+
+</div>
+
+#### Step 2 — Create a Telegram bot (fastest channel)
+
+Hermes Agent has no chat UI — it talks through messaging apps. Telegram is the quickest:
+
+1. Open Telegram, message [@BotFather](https://t.me/BotFather)
+2. Send `/newbot` and follow the prompts
+3. Copy the **Bot Token** it gives you
+4. Send any message to your new bot (this registers it)
+5. To find your own Telegram user ID, message [@userinfobot](https://t.me/userinfobot)
+
+<div dir="rtl">
+
+#### مرحله ۲ — ساخت ربات تلگرام (سریع‌ترین کانال)
+
+هرمس رابط چت نداره — از طریق پیام‌رسان‌ها حرف می‌زنه. تلگرام سریع‌ترینه:
+
+۱. تلگرام رو باز کن و به [@BotFather](https://t.me/BotFather) پیام بده
+۲. `/newbot` رو بفرست و مراحل رو طی کن
+۳. **Bot Token**ی که بهت می‌ده رو کپی کن
+۴. یه پیام به رباتت بفرست (این کار ربات رو ثبت می‌کنه)
+۵. برای پیدا کردن آیدی کاربری خودت، به [@userinfobot](https://t.me/userinfobot) پیام بده
+
+</div>
+
+#### Step 3 — Deploy the project
+
+1. Log in to [railway.com](https://railway.com) with your GitHub account
+2. Click **New Project** (top right)
+3. Select **Deploy from GitHub repo**
+4. Choose `youjjbbnn/blue-hermes` (if it's not listed, click **Configure GitHub App** and grant access), then click **Deploy Now**
+
+Railway clones the repo, builds the Docker image, and starts it. The first build takes a few minutes.
+
+<div dir="rtl">
+
+#### مرحله ۳ — دیپلوی پروژه
+
+۱. با اکانت گیت‌هاب وارد [railway.com](https://railway.com) شو
+۲. گوشه‌ی بالا سمت راست **New Project** رو بزن
+۳. **Deploy from GitHub repo** رو انتخاب کن
+۴. `youjjbbnn/blue-hermes` رو انتخاب کن (اگه تو لیست نیست، **Configure GitHub App** رو بزن و دسترسی بده)، بعد **Deploy Now** رو کلیک کن
+
+ریلوی ریپو رو کلون می‌کنه، ایمیج Docker رو می‌سازه و اجراش می‌کنه. بیلد اول چند دقیقه طول می‌کشه.
+
+</div>
+
+#### Step 4 — Add your admin password
+
+1. In your Railway project, click the service (it's named after the repo)
+2. Open the **Variables** tab
+3. Click **New Variable** and add:
+
+   | Name | Value |
+   |------|-------|
+   | `ADMIN_PASSWORD` | a strong password you choose |
+
+4. The service redeploys automatically. If you skip this, Railway generates a random password and prints it in the **Deploy Logs** — copy it from there.
+
+<div dir="rtl">
+
+#### مرحله ۴ — افزودن رمز ادمین
+
+۱. تو پروژه‌ی ریلوی، روی سرویس کلیک کن (اسمش همون اسم ریپوئه)
+۲. تب **Variables** رو باز کن
+۳. **New Variable** رو بزن و این رو اضافه کن:
+
+   | نام | مقدار |
+   |------|-------|
+   | `ADMIN_PASSWORD` | یه رمز قوی انتخاب کن |
+
+۴. سرویس خودش دوباره دیپلوی می‌شه. اگه این کار رو نکنی، ریلوی یه رمز تصادفی می‌سازه و تو **Deploy Logs** چاپش می‌کنه — از اونجا کپیش کن.
+
+</div>
+
+#### Step 5 — Attach a data volume
+
+This is what keeps your config, keys, and chat history alive across redeploys.
+
+1. Click your service, open the **Settings** tab
+2. Scroll to **Volumes** and click **Add Volume**
+3. Mount path: `/data`
+4. Leave size at the default (or increase it if you expect heavy use)
+
+<div dir="rtl">
+
+#### مرحله ۵ — وصل کردن Volume داده‌ها
+
+این کار باعث می‌شه کانفیگ، کلیدها و تاریخچه‌ی چت‌ها تو ری‌دیپلوی‌ها حفظ بشن.
+
+۱. روی سرویس کلیک کن و تب **Settings** رو باز کن
+۲. به بخش **Volumes** برو و **Add Volume** رو بزن
+۳. مسیر مونت: `/data`
+۴. سایز رو روی پیش‌فرض بذار (یا اگه استفاده‌ی زیادی داری بیشترش کن)
+
+</div>
+
+#### Step 6 — Open the admin dashboard
+
+1. On your service's **Settings** tab, find **Networking** → **Generate Domain**
+2. Railway gives you a URL like `blue-hermes-production-xxxx.up.railway.app`
+3. Open it — you land on the login page
+4. Log in with username `admin` and the password from Step 4
+
+<div dir="rtl">
+
+#### مرحله ۶ — باز کردن پنل ادمین
+
+۱. تو تب **Settings** سرویس، بخش **Networking** رو پیدا کن و **Generate Domain** رو بزن
+۲. ریلوی یه آدرس مثل `blue-hermes-production-xxxx.up.railway.app` بهت می‌ده
+۳. بازش کن — به صفحه‌ی لاگین می‌رسی
+۴. با نام کاربری `admin` و رمزی تو مرحله ۴ گذاشتی وارد شو
+
+</div>
+
+#### Step 7 — Configure providers and channels
+
+1. On the **Setup** page, open the **LLM Provider** dropdown and pick **OpenRouter**
+2. Paste your OpenRouter API key from Step 1
+3. Enter the model name (e.g. `google/gemma-3-1b-it:free`)
+4. In **Messaging Channels**, check **Telegram** and paste the Bot Token from Step 2
+5. Click **Save & Start** — the gateway spins up and your bot goes live
+
+To add your own vLLM / Ollama / LM Studio / private proxy, see [Adding a Custom Provider](#-adding-a-custom-provider) below.
+
+<div dir="rtl">
+
+#### مرحله ۷ — تنظیم پروایدرها و کانال‌ها
+
+۱. تو صفحه‌ی **Setup**، منوی **LLM Provider** رو باز کن و **OpenRouter** رو انتخاب کن
+۲. کلید OpenRouter از مرحله ۱ رو اینجا بذار
+۳. اسم مدل رو وارد کن (مثلاً `google/gemma-3-1b-it:free`)
+۴. تو بخش **Messaging Channels** تیک **Telegram** رو بزن و Bot Token مرحله ۲ رو پیست کن
+۵. **Save & Start** رو بزن — گیتوی راه می‌افته و رباتت آنلاین می‌شه
+
+برای اضافه کردن vLLM / Ollama / LM Studio / پراکسی خودت، [اضافه کردن پروایدر سفارشی](#-adding-a-custom-provider) رو پایین ببین.
+
+</div>
+
+#### Step 8 — Approve yourself and start chatting
+
+1. Send a message to your Telegram bot
+2. Back in the dashboard, go to the **Users** tab — you'll see a pending pairing request
+3. Click **Approve**
+4. Done — the bot now replies
+
+<div dir="rtl">
+
+#### مرحله ۸ — تایید خودت و شروع چت
+
+۱. به ربات تلگرامت یه پیام بفرست
+۲. تو پنل، به تب **Users** برو — یه درخواست pending می‌بینی
+۳. **Approve** رو بزن
+۴. تمام — ربات حالا جواب می‌ده
+
+</div>
 
 ## 🐳 Quick Start (Docker)
 
